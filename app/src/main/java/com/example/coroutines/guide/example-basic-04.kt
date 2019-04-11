@@ -13,6 +13,12 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
 
+    /*
+    除了由不同的构建器提供协程作用域之外，还可以使用 coroutineScope 构建器声明自己的作用域。
+    它会创建新的协程作用域并且在所有已启动子协程执行完毕之前不会结束。
+    runBlocking 与 coroutineScope 的主要区别在于后者在等待所有子协程执行完毕时不会阻塞当前线程。
+     */
+
     launch {
         // 4
         delay(2_000L)
