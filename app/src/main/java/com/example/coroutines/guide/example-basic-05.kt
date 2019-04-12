@@ -11,14 +11,14 @@ import kotlinx.coroutines.runBlocking
  */
 
 fun main() = runBlocking {
-    launch { doWorld() }
-    println("Hello,")
+  launch { doWorld() }
+  println("Hello,")
 }
 
 /**
  * suspend 即暂停的意思, 协程特性必需品
  */
 suspend fun doWorld() {
-    delay(1_000L)
-    println("World!")
+  delay(1_000L)
+  println("World!")
 }

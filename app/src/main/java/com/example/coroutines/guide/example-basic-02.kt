@@ -12,12 +12,12 @@ import kotlinx.coroutines.runBlocking
  */
 
 fun main() {
-    GlobalScope.launch {
-        delay(1_000L)
-        println("World!")
-    }
-    println("Hello,")
-    runBlocking {
-        delay(2_000L)
-    }
+  GlobalScope.launch {
+    delay(1_000L)
+    println("World!")
+  }
+  println("Hello,")
+  runBlocking {
+    delay(2_000L)
+  }
 }

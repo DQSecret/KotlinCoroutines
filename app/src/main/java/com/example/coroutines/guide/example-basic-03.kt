@@ -13,12 +13,12 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
 
-    // 延迟一段时间来等待另一个协程运行并不是一个好的选择.
-    // 让我们显式（以非阻塞方式）等待所启动的后台 Job 执行结束:
-    val job = GlobalScope.launch {
-        delay(1_000L)
-        println("World!")
-    }
-    println("Hello,")
-    job.join()
+  // 延迟一段时间来等待另一个协程运行并不是一个好的选择.
+  // 让我们显式（以非阻塞方式）等待所启动的后台 Job 执行结束:
+  val job = GlobalScope.launch {
+    delay(1_000L)
+    println("World!")
+  }
+  println("Hello,")
+  job.join()
 }

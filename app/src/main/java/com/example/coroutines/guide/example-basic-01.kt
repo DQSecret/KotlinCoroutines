@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
  */
 
 fun main() {
-    GlobalScope.launch {
-        delay(1_000L)
-        println("World!")
-    }
-    println("Hello,")
-    Thread.sleep(2_000L)
+  GlobalScope.launch {
+    delay(1_000L)
+    println("World!")
+  }
+  println("Hello,")
+  Thread.sleep(2_000L)
 }

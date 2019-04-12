@@ -11,15 +11,15 @@ import kotlinx.coroutines.runBlocking
  */
 
 fun main() = runBlocking {
-    launchDoWorld()
-    println("Hello,")
+  launchDoWorld()
+  println("Hello,")
 }
 
 /**
  * suspend 即暂停的意思, 协程特性必需品
  */
 suspend fun launchDoWorld() = coroutineScope {
-    launch {
-        println("World!")
-    }
+  launch {
+    println("World!")
+  }
 }
