@@ -1,4 +1,4 @@
-package com.example.coroutines.guide
+package com.example.coroutines.guide.basic
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
