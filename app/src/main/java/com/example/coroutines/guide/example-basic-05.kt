@@ -5,7 +5,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
- * 协程测试代码
+ * 提取函数重构
  * @author DQDana
  * @since 2019/4/11 4:18 PM
  */

@@ -21,19 +21,19 @@ fun main() = runBlocking {
 
     launch {
         // 4
-        delay(2_000L)
+        delay(200L)
         println("Task from runBlocking")
     }
 
     coroutineScope {
         // 2 Creates a new coroutine scope (协程范围)
         launch {
-            delay(1000L)
+            delay(500L)
             println("Task from nested(嵌套) launch")
         }
 
         // 1
-        delay(500L)
+        delay(100L)
         println("Task from coroutine scope")
     }
 
