@@ -20,7 +20,7 @@ fun main() = runBlocking {
     val two = async(start = CoroutineStart.LAZY) { doSomethingUsefulTwo() }
     // 执行一些计算
     delay(500L)
-    one.start() // one.await() : 两者都会触发 协程启动
+    one.start() // one.await() : 两者都会触发 协程启动, 但是 await 并不是预期用例
     two.start()
     println("The answer is ${one.await() + two.await()}")
   }
