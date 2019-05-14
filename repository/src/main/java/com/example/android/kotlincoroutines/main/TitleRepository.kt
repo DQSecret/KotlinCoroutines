@@ -20,6 +20,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.kotlincoroutines.main.TitleRepository.RefreshState.*
 import com.example.android.kotlincoroutines.util.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlin.LazyThreadSafetyMode.NONE
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -80,14 +82,16 @@ class TitleRepository(private val network: MainNetwork, private val titleDao: Ti
     }
 
     /**
-     * 调用协程方法的示例
+     * 利用 coroutine 改写 api 回调
      */
-    suspend fun exampleAwaitUsage() {
-        try {
-            val call = network.fetchNewWelcome()
-            val result = call.await()
-        } catch (error: FakeNetworkException) {
-            error.printStackTrace()
+    suspend fun refreshTitle() {
+        withContext(Dispatchers.IO) {
+            try {
+                val result = network.fetchNewWelcome().await()
+                titleDao.insertTitle(Title(result))
+            } catch (error: FakeNetworkException) {
+                throw TitleRefreshError(error)
+            }
         }
     }
 
