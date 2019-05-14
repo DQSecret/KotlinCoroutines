@@ -19,10 +19,11 @@ package com.example.android.kotlincoroutines.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.kotlincoroutines.main.TitleRepository.RefreshState.*
-import com.example.android.kotlincoroutines.util.BACKGROUND
-import com.example.android.kotlincoroutines.util.FakeNetworkError
-import com.example.android.kotlincoroutines.util.FakeNetworkSuccess
+import com.example.android.kotlincoroutines.util.*
 import kotlin.LazyThreadSafetyMode.NONE
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * TitleRepository provides an interface to fetch a title or request a new one be generated.
@@ -79,6 +80,18 @@ class TitleRepository(private val network: MainNetwork, private val titleDao: Ti
     }
 
     /**
+     * 调用协程方法的示例
+     */
+    suspend fun exampleAwaitUsage() {
+        try {
+            val call = network.fetchNewWelcome()
+            val result = call.await()
+        } catch (error: FakeNetworkException) {
+            error.printStackTrace()
+        }
+    }
+
+    /**
      * Class that represents the state of a refresh request.
      *
      * Sealed classes can only be extended from inside this file.
@@ -109,7 +122,7 @@ class TitleRepository(private val network: MainNetwork, private val titleDao: Ti
 }
 
 /**
- * Listener for [RefreshState] changes.
+ * Listener for [TitleRepository.RefreshState] changes.
  *
  * A typealias introduces a shorthand way to say a complex type. It does not create a new type.
  */
@@ -131,3 +144,13 @@ class TitleRefreshError(cause: Throwable) : Throwable(cause.message, cause)
  * @throws Throwable original exception from library if network request fails
  */
 // TODO: Implement FakeNetworkCall<T>.await() here
+suspend fun <T> FakeNetworkCall<T>.await(): T {
+    return suspendCoroutine { continuation ->
+        addOnResultListener { result ->
+            when (result) {
+                is FakeNetworkSuccess<T> -> continuation.resume(result.data)
+                is FakeNetworkError<T> -> continuation.resumeWithException(result.error)
+            }
+        }
+    }
+}
