@@ -4,12 +4,14 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.coroutines.example.User
 import com.example.coroutines.example.UserService
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.toast
 import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.resume
 import kotlin.system.measureTimeMillis
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                 progress.visibility = View.VISIBLE
 
                 val user = withContext(Dispatchers.IO) { userService.doLogin(username, password) }
+                // val user1 = withContext(Dispatchers.IO) { suspendAsyncLogin(username, password) }
                 val currentFriends = async(Dispatchers.IO) { userService.requestCurrentFriends(user) }
                 val suggestedFriends = async(Dispatchers.IO) { userService.requestSuggestedFriends(user) }
 
@@ -50,6 +53,16 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             Logger.d("doLogin() 耗时: $time")
         }
     }
+
+    /**
+     * 将 callback 修改为 suspend
+     */
+    suspend fun suspendAsyncLogin(username: String, password: String): User =
+        suspendCancellableCoroutine { continuation ->
+            userService.doLoginAsync(username, password) { user ->
+                continuation.resume(user)
+            }
+        }
 
     private fun setupCoroutine() {
         tv_hi.setOnClickListener {
