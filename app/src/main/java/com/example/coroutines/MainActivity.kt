@@ -4,6 +4,7 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +12,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupFrameAnim()
+        setupCoroutine()
+    }
+
+    private fun setupCoroutine() {
+        tv_hi.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
+                    delay(2_000)
+                }
+                tv_hi.text = "来自协程的文本"
+            }
+        }
+    }
+
+    private fun setupFrameAnim() {
         // 灯
         frame_anim_deng.setBackgroundResource(R.drawable.frame_animation_deng)
         val frameDeng = frame_anim_deng.background as AnimationDrawable
