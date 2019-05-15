@@ -31,6 +31,7 @@
         blurkit:blk_downscaleFactor="0.25" />
 
     <TextView
+        android:id="@+id/tv_hi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
