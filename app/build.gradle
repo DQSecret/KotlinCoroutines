@@ -52,5 +52,5 @@ dependencies {
     implementation 'io.alterac.blurkit:blurkit:1.1.1'
 
     implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'com.alibaba:fastjson:1.2.48'
+    implementation 'com.alibaba:fastjson:1.2.58'
 }

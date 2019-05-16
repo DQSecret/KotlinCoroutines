@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
 
     compileSdkVersion rootProject.compile_sdk_version
+    buildToolsVersion rootProject.build_tools_version
 
     defaultConfig {
         applicationId "com.example.wan"
@@ -25,8 +26,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility = '1.8'
+        sourceCompatibility = '1.8'
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -38,7 +43,14 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$rootProject.appcompat_support_lib_version"
     implementation "androidx.core:core-ktx:$rootProject.core_ktx_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
+
 
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraint_layout_version"
     implementation "com.google.android.material:material:$rootProject.material_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation_version"
 }
