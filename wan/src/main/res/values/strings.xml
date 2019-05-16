@@ -4,4 +4,10 @@
     <string name="str_sun_flower">Sun Flower</string>
     <string name="str_wan_android">Wan Android</string>
 
+    <string name="navigation_drawer_header_content_description">导航抽屉页眉</string>
+    <string name="navigation_drawer_header_title">Sun Flower</string>
+
+    <string name="my_garden_title">我的花园</string>
+    <string name="plant_list_title">植物目录</string>
+
 </resources>

@@ -22,7 +22,9 @@
 
         <activity android:name=".WanActivity" />
 
-        <activity android:name="com.example.flower.FlowerActivity" />
+        <activity
+            android:name="com.example.flower.FlowerActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 </manifest>

@@ -17,6 +17,7 @@ buildscript {
         core_ktx_version = '1.2.0-alpha01'
         constraint_layout_version = '2.0.0-beta1'
         ktlint_version = '0.32.0'
+        material_version = '1.1.0-alpha06'
     }
 
     repositories {
