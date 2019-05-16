@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">wan</string>
+    <string name="str_sun_flower">Sun Flower</string>
+    <string name="str_wan_android">Wan Android</string>
 
 </resources>
