@@ -6,11 +6,11 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_garden_empty"
+            android:id="@+id/tv_plant_list_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/garden_empty"
+            android:text="@string/plant_list_empty"
             android:textSize="24sp" />
     </FrameLayout>
 </layout>
